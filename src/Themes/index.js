@@ -7,6 +7,7 @@ export const Theme = createGlobalStyle`
         --bg-color: ${themes[props.mode].backgroundColor};
         --theme-color: ${themes[props.mode].themeColor};
         --text-color: ${themes[props.mode].textColor};
+        --shadow-color: ${themes[props.mode].shadowColor};
       `}
 
     --container-padding: 2.5rem;

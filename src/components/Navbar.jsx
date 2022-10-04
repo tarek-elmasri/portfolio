@@ -1,42 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "styled-components";
 import logo from "../assets/logo-light.png";
 import { Link } from "react-scroll";
-import globalVariables from "../assets/globalValues";
+import Button from "./Button";
 
-const Wrapper = styles.nav`
-  position: sticky;
-  top: 0;
-  left: 0;
-  padding-right: var(--container-padding);
-  padding-left: var(--container-padding);
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  box-shadow: 0px 4px 4px rgba(254, 176, 0, 0.2);
-  opacity: .8;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-
-  .nav-link{
-    margin: 0 1.5rem;
-    cursor: pointer;
-  };
-
-  .line{
-    height: 5px;
-    width: 18px;
-    margin-top: .5rem;
-    background-color: var(--theme-color);
-  };
-`;
-const Navbar = () => {
-  const NavLink = ({ title, target }) => (
+const NavLink = ({ title, target, active, as }) =>
+  as === "button" ? (
+    <Button>{title}</Button>
+  ) : (
     <div>
       <Link
         className="nav-link"
-        activeClass="active"
         to={target}
         spy={true}
         smooth={true}
@@ -49,20 +23,64 @@ const Navbar = () => {
         spyThrottle={500}
       >
         <span>{title}</span>
+        <div className={`line ${active ? "active" : "inactive"}`} />
       </Link>
-      <div className="line" />
     </div>
   );
+
+const Wrapper = styles.nav`
+position: sticky;
+top: 0;
+left: 0;
+z-index: 1000;
+padding-right: var(--container-padding);
+padding-left: var(--container-padding);
+padding-top: 2rem;
+padding-bottom: 2rem;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+background-color: var(--bg-color);
+opacity: .9;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+
+.nav-link{
+  position: relative;
+  margin: 0 1.5rem;
+  cursor: pointer;
+  display: block;
+
+  > span{
+    font-weight: bold;
+  };
+
+  .line{
+    position: absolute;
+    bottom: -15px;
+    height: 5px;
+    width: 20px;
+    background-color: var(--bg-color);
+    transition: background-color 400ms linear;
+
+    &.active{
+      background-color: var(--theme-color);
+    };
+  };
+};
+
+`;
+const Navbar = () => {
   return (
     <Wrapper>
       <div>
         <img src={logo} alt="logo" />
       </div>
-      <div style={{ display: "flex" }}>
-        <NavLink target="#" title="About Us" />
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <NavLink target="#" title="About Us" active={true} />
         <NavLink target="#" title="Skills" />
         <NavLink target="#" title="Projects" />
-        <NavLink target="#" title="Hire Us" />
+        <NavLink as={"button"} target="#" title="Hire Us" />
       </div>
     </Wrapper>
   );
