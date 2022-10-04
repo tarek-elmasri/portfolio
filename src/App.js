@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Theme } from "./Themes";
+import styles from "styled-components";
+import Navbar from "./components/Navbar";
+
+const Container = styles.div`
+  padding: 0 var(--container-padding);
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Theme mode="light" />
+      <Navbar />
+      <Container>
+        <div>
+          <h1>Home</h1>
+        </div>
+        <div>
+          <h2>Home</h2>
+        </div>
+        <h2>Home</h2>
+        <p>Hmoe</p>
+      </Container>
+    </>
   );
 }
 
