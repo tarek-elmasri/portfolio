@@ -3,6 +3,7 @@ import styles from "styled-components";
 import logo from "../assets/logo-light.png";
 import { Link } from "react-scroll";
 import Button from "./Button";
+import globalVariables from "../assets/globalValues";
 
 const NavLink = ({ title, target, active, as }) =>
   as === "button" ? (
@@ -69,6 +70,21 @@ justify-content: space-between;
   };
 };
 
+.nav-links{
+  display: none;
+  @media (min-width: ${globalVariables.screens.md}){
+    display: flex;
+    align-items: center;
+  };
+
+};
+
+  .nav-bar-icon{
+    @media (min-width: ${globalVariables.screens.md}){
+      display: none;
+      };
+    };
+  }
 `;
 const Navbar = () => {
   return (
@@ -76,11 +92,30 @@ const Navbar = () => {
       <div>
         <img src={logo} alt="logo" />
       </div>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div className="nav-links">
         <NavLink target="#" title="About Us" active={true} />
         <NavLink target="#" title="Skills" />
         <NavLink target="#" title="Projects" />
         <NavLink as={"button"} target="#" title="Hire Us" />
+      </div>
+      <div className="nav-bar-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon icon-tabler icon-tabler-menu-2"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          stroke="currentColor"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
       </div>
     </Wrapper>
   );

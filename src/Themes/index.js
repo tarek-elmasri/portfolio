@@ -10,8 +10,7 @@ export const Theme = createGlobalStyle`
         --shadow-color: ${themes[props.mode].shadowColor};
       `}
 
-    --container-padding: 2.5rem;
-
+      --container-padding: 2.5rem;
   }
   
   h1{
