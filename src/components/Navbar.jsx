@@ -80,6 +80,8 @@ justify-content: space-between;
 };
 
   .nav-bar-icon{
+    color: var(--theme-color);
+    cursor: pointer;
     @media (min-width: ${globalVariables.screens.md}){
       display: none;
       };

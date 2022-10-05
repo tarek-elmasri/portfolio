@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React from "react";
 import styles from "styled-components";
 import heroImg from "../assets/hero-img.png";
 import logoFade from "../assets/logo-fade.png";
@@ -73,27 +73,20 @@ const StyledHero = styles.section`
   `;
 
 const Hero = () => {
-  const animationRef = useRef();
-  const { ref: inViewRef, inView } = useInView({
+  const { ref: heroDataRef, inView: heroDataInView } = useInView({
     delay: 400,
-    triggerOnce: false,
   });
-
-  const setAnimationRefs = useCallback(
-    (node) => {
-      // Ref's from useRef needs to have the node assigned to `current`
-      animationRef.current = node;
-      // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
-      inViewRef(node);
-    },
-    [inViewRef]
-  );
+  const { ref: heroImgRef, inView: heroImgInView } = useInView({
+    delay: 400,
+  });
 
   return (
     <StyledHero>
       <div
-        ref={setAnimationRefs}
-        className={`hero-data ${inView ? "hero-data-in" : "hero-data-out"}`}
+        ref={heroDataRef}
+        className={`hero-data ${
+          heroDataInView ? "hero-data-in" : "hero-data-out"
+        }`}
       >
         <h1>Tarek El-Masri</h1>
         <h2>A Profissional Freelancer Web Developer</h2>
@@ -112,8 +105,8 @@ const Hero = () => {
       </div>
 
       <div
-        ref={setAnimationRefs}
-        className={`hero-img ${inView ? "hero-img-in" : "hero-img-out"}`}
+        ref={heroImgRef}
+        className={`hero-img ${heroImgInView ? "hero-img-in" : "hero-img-out"}`}
       >
         <img src={heroImg} alt="hero-img" />
       </div>

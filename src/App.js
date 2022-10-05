@@ -11,7 +11,7 @@ const Container = styles.div`
 function App() {
   return (
     <>
-      <Theme mode="light" />
+      <Theme mode="dark" />
       <Navbar />
       <Container>
         <Hero />
